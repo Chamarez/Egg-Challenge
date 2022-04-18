@@ -7,6 +7,7 @@ import Egg.Challenge.challenge.orders.payloads.OrderRequest;
 import Egg.Challenge.challenge.orders.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,12 +24,11 @@ public class CustomerController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @PreAuthorize("hasRole('USER')")
     @PutMapping
     public void addHusband(@Valid @RequestBody OrderRequest orderRequest) {
-
         User newCustomer = customerService.findByUsername(orderRequest.getUsername());
         System.out.println(newCustomer.toString());
-
         Order order = new Order();
         order.setDesc(orderRequest.getDesc());
         order.setOrd_date();
@@ -36,8 +36,6 @@ public class CustomerController {
         orderRepository.save(order);
         newCustomer.setOrders(order);
         customerService.save(newCustomer);
-
-
 
     }
 
