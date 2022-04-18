@@ -4,6 +4,7 @@ package Egg.Challenge.challenge.auth.models;
 import Egg.Challenge.challenge.orders.models.Order;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -48,7 +49,7 @@ public class User {
     @OneToMany (cascade = CascadeType.PERSIST) // Mapa de asociación unidireccional uno a muchos
     // @OneToMany (cascade = CascadeType.PERSIST, mappedBy = "customer") // equivalente a las dos líneas anteriores
     @OrderBy(value = "id asc")
-    private Set<Order> orders;
+    private List<Order> orders;
 
 
 
@@ -93,12 +94,28 @@ public class User {
     }
     public String getAddress(){return address;}
 
-    public Set<Order> getOrders() {
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setOrders(Order orders) {
+         this.orders.add(orders);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", roles=" + roles +
+                ", orders=" + orders +
+                '}';
+    }
 }

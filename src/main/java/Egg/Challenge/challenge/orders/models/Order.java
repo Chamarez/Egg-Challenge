@@ -32,8 +32,8 @@ public class Order {
         return ord_date;
     }
 
-    public void setOrd_date(Date ord_date) {
-        this.ord_date = ord_date;
+    public void setOrd_date() {
+        this.ord_date = new Date();
     }
 
     public String getState() {
