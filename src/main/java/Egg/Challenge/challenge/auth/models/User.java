@@ -1,6 +1,8 @@
 package Egg.Challenge.challenge.auth.models;
 
 
+import Egg.Challenge.challenge.orders.models.Order;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -42,11 +44,11 @@ public class User {
 
 
 
-/*    @JoinColumn (name = "user_id") // Nombre de la clave externa asignada
+    @JoinColumn (name = "user_id") // Nombre de la clave externa asignada
     @OneToMany (cascade = CascadeType.PERSIST) // Mapa de asociación unidireccional uno a muchos
     // @OneToMany (cascade = CascadeType.PERSIST, mappedBy = "customer") // equivalente a las dos líneas anteriores
     @OrderBy(value = "id asc")
-    private Set<Order> orders;*/
+    private Set<Order> orders;
 
 
 
@@ -91,12 +93,12 @@ public class User {
     }
     public String getAddress(){return address;}
 
-/*    public Set<Order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
-    }*/
+    }
 
 }
